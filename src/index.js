@@ -60,11 +60,11 @@ client.on(Events.MessageCreate, async (message) => {
         if(customerFound) {
           const member = client.guilds.cache.get(guildId).members.cache.get(message.author.id)
           assignVerifiedRole(member)
-          message.delete()
-          message.reply({
+          await message.reply({
             content: `User <@${member.id}> has been verified! Welcome to NavTech!`,
             withResponse: true
           })
+          message.delete()
         } else {
           message.reply({
             content: `The email address provided is not associated with an active subscription.`,
