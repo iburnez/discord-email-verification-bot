@@ -11,7 +11,7 @@ module.exports = {
 
       if(attemptsRemainingByUserId.get(userId) <= 0) {
         if(!timeoutsByUserId.has(userId)) {
-          const fiveMin = 30000 //300000 //TODO Update timeout to 5 min
+          const fiveMin = 300000
           setTimeout(() => {
             timeoutsByUserId.delete(userId)
             attemptsRemainingByUserId.delete(userId)
