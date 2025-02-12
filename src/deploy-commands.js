@@ -1,9 +1,9 @@
 const { REST, Routes } = require('discord.js');
-const { clientId, guildId, discordToken } = require('./config.json');
+const { clientId, guildId, botToken } = require('./config.json');
 
 const { getCommands } = require('./get-commands.js');
 
-const rest = new REST().setToken(discordToken);
+const rest = new REST().setToken(botToken);
 
 (async () => {
 	const commands = getCommands('json');

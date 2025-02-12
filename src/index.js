@@ -1,6 +1,6 @@
 const { Client, Events, GatewayIntentBits, MessageFlags } = require('discord.js')
 
-const { adminRoleName, discordToken, guildId, verificationChannelId } = require('./config')
+const { adminRoleName, botToken, guildId, verificationChannelId } = require('./config')
 const { getCommands } = require('./get-commands')
 const { handleCommand } = require('./handlers/commandHandler')
 const { isValidEmail } = require('./services/emailValidation')
@@ -18,7 +18,7 @@ const client = new Client({
 })
 
 client.commands = getCommands()
-client.login(discordToken)
+client.login(botToken)
 
 client.on('ready', (c) => {
   console.log(`Logged in as ${c.user.tag}!`)

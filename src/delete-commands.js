@@ -1,8 +1,8 @@
 const { REST } = require('@discordjs/rest')
 const { Routes } = require('discord-api-types/v9')
-const { clientId, guildId, discordToken } = require('./config.json')
+const { clientId, guildId, botToken } = require('./config.json')
 
-const rest = new REST({ version: '9' }).setToken(discordToken)
+const rest = new REST({ version: '9' }).setToken(botToken)
 const commandId = '1337969939742457937' //verify commandId
 
 rest.delete(Routes.applicationGuildCommand(clientId, guildId, commandId))
