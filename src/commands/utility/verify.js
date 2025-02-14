@@ -61,8 +61,14 @@ module.exports = {
 async function getUnverifiedGuildMembers(interaction) {
   const guildMembers = await interaction.guild.members.fetch()
   const unverifiedMembers = await guildMembers.filter(member => {
-    const unverifiedRole = member.roles.cache.find(role => role.name.toLowerCase() === 'unverified')
-    return !!unverifiedRole
+    if(member.roles.cache.size === 1) {
+      let isUnverified = false
+      for(const role of member.roles.cache.values()) {
+        isUnverified = role.name === '@everyone' 
+      }
+      return isUnverified
+    }
+    return false
   })
   return unverifiedMembers
 }
