@@ -1,7 +1,6 @@
 const { Client, Events, GatewayIntentBits, MessageFlags } = require('discord.js')
 
 const { adminRoleName, botToken, guildId, verificationChannelId } = require('./config')
-const { log } = require('./services/logger')
 const { getCommands } = require('./get-commands')
 const { handleCommand } = require('./handlers/commandHandler')
 const { isValidEmail } = require('./services/emailValidation')
@@ -23,7 +22,6 @@ client.login(botToken)
 
 client.on('ready', (c) => {
   console.log(`Logged in as ${c.user.tag}!`)
-  log.info(`Logged in as ${c.user.tag}!`)
 })
 
 client.on(Events.GuildMemberAdd, (member) => {
@@ -35,11 +33,9 @@ client.on(Events.GuildMemberAdd, (member) => {
         `To verify your subscription please reply with your email address.`)
     } else {
       console.log(`Unable to find channelId: ${verificationChannelId}`)
-      log.info(`Unable to find channelId: ${verificationChannelId}`)
     }
   } catch (error) {
     console.error(`Unable to post welcome message: `, error)
-    log.error(`Unable to post welcome message: `, error)
   }
 })
 
@@ -65,7 +61,6 @@ client.on(Events.MessageCreate, async (message) => {
           const member = client.guilds.cache.get(guildId).members.cache.get(message.author.id)
           await assignVerifiedRole(member)
           console.log(`User @${member.user.username} has been verified! Welcome to NavTech!`)
-          log.info(`User @${member.user.username} has been verified! Welcome to NavTech!`)
           await message.delete()
         } else {
           await message.reply({
@@ -78,7 +73,6 @@ client.on(Events.MessageCreate, async (message) => {
       }
     } catch (error) {
       console.error('Unable to process user verification attempt: ', error)
-      log.error('Unable to process user verification attempt: ', error)
       await interaction.reply({
         content: `Unable to process user verification attempt. Error ${error}`,
         withResponse: true
@@ -88,23 +82,14 @@ client.on(Events.MessageCreate, async (message) => {
 })
 
 client.on(Events.InteractionCreate, async interaction => {
-  try {
-    if (!interaction.isChatInputCommand() && interaction.commandName != 'verify') return
-    const isAdmin = interaction.member.roles.cache.some(role => role.name.toLowerCase() === adminRoleName.toLowerCase())
-    if (isAdmin) {
-      const command = interaction.client.commands.get(interaction.commandName)
-      await handleCommand(interaction, command)
-    } else {
-      await interaction.reply({
-        content: `You do not have permission to use the /verify command.`,
-        flags: MessageFlags.Ephemeral
-      })
-    }
-  } catch (error) {
-    console.error('Unable to process command: ', error)
-    log.error('Unable to process command: ', error)
+	if (!interaction.isChatInputCommand() && interaction.commandName != 'verify') return
+	const isAdmin = interaction.member.roles.cache.some(role => role.name.toLowerCase() === adminRoleName.toLowerCase())
+	if (isAdmin) {
+    const command = interaction.client.commands.get(interaction.commandName)
+    await handleCommand(interaction, command)
+	} else {
     await interaction.reply({
-      content: `Unable to process command. Error ${error}`,
+      content: `You do not have permission to use the /verify command.`,
       flags: MessageFlags.Ephemeral
     })
   }

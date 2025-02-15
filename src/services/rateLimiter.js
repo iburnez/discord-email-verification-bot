@@ -1,5 +1,3 @@
-const { log } = require('./logger')
-
 const attemptsRemainingByUserId = new Map()
 const timeoutsByUserId = new Map()
 const MAX_ATTEMPTS = 3
@@ -26,7 +24,6 @@ module.exports = {
         timeout: getTimeUntilNextAttempt( timeoutsByUserId.get(userId) )
       }
     } catch (error) {
-      log.error('Error tracking user verification attempts: ', error)
       console.error('Error tracking users verification attempts: ', error)
     }
   }

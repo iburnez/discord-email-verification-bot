@@ -1,5 +1,3 @@
-const { log } = require('./logger')
-
 module.exports = {
   isValidEmail: (email) => {
     try {
@@ -23,7 +21,6 @@ module.exports = {
       return true;
     } catch (error) {
       console.error(`Error in validating email address: ${email}`, error)
-      log.error(`Error in validating email address: ${email}`, error)
       return false
     }
   }
