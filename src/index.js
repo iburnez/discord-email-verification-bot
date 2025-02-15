@@ -46,7 +46,7 @@ client.on(Events.MessageCreate, async (message) => {
       if(isValidEmail(message.content)) {
         const attempts = getAttemptInfo(message.author.id)
         if(attempts.remaining == 0) {
-          message.reply({
+          await message.reply({
             content: `You have exceeded the maximum number of attempts.\n `
                     + `Please try again in ${attempts.timeout} minutes.`,
             withResponse: true
@@ -59,24 +59,21 @@ client.on(Events.MessageCreate, async (message) => {
 
         if(customerFound) {
           const member = client.guilds.cache.get(guildId).members.cache.get(message.author.id)
-          assignVerifiedRole(member)
-          await message.reply({
-            content: `User <@${member.id}> has been verified! Welcome to NavTech!`,
-            withResponse: true
-          })
-          message.delete()
+          await assignVerifiedRole(member)
+          console.log(`User @${member.user.username} has been verified! Welcome to NavTech!`)
+          await message.delete()
         } else {
-          message.reply({
+          await message.reply({
             content: `The email address provided is not associated with an active subscription.`,
             withResponse: true
           })
         }
       } else {
-        message.reply(`\'${message.content}\' is not a valid email address. Please enter a valid email address.`)
+        await message.reply(`\'${message.content}\' is not a valid email address. Please enter a valid email address.`)
       }
     } catch (error) {
       console.error('Unable to process user verification attempt: ', error)
-      interaction.reply({
+      await interaction.reply({
         content: `Unable to process user verification attempt. Error ${error}`,
         withResponse: true
       })
@@ -89,7 +86,7 @@ client.on(Events.InteractionCreate, async interaction => {
 	const isAdmin = interaction.member.roles.cache.some(role => role.name.toLowerCase() === adminRoleName.toLowerCase())
 	if (isAdmin) {
     const command = interaction.client.commands.get(interaction.commandName)
-    handleCommand(interaction, command)
+    await handleCommand(interaction, command)
 	} else {
     await interaction.reply({
       content: `You do not have permission to use the /verify command.`,

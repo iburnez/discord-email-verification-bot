@@ -11,7 +11,7 @@ module.exports = {
       const unverifiedMembers = await getUnverifiedGuildMembers(interaction)
 
       if(unverifiedMembers.size === 0) {
-        interaction.reply('No unverified users found.')
+        await interaction.reply('No unverified users found.')
         return
       }
 
@@ -49,11 +49,11 @@ module.exports = {
         assignVerifiedRole(selectedMember)
         await result.update({ content: `User <@${selectedMember.id}> has been verified`, components: [] });
       } catch (error) {
-        interaction.editReply({ content: 'No member selected to verify within 30s, cancelling...', components: [] });
+        await interaction.editReply({ content: 'No member selected to verify within 30s, cancelling...', components: [] });
       }
     } catch ( error ) {
       console.log('Error in verification component: ', error)
-      interaction.reply( 'An error occured in the verification component: ' + error )
+      await interaction.reply( 'An error occured in the verification component: ' + error )
     }
   }
 }
