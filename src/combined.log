@@ -1,0 +1,5 @@
+{"level":"info","message":"Started refreshing 1 application (/) commands.","service":"user-service","timestamp":"2025-02-15T22:05:30.136Z"}
+{"level":"info","message":"Successfully reloaded 1 application (/) commands.","service":"user-service","timestamp":"2025-02-15T22:05:30.542Z"}
+{"level":"info","message":"Successfully deleted guild command","service":"user-service","timestamp":"2025-02-15T22:06:49.846Z"}
+{"level":"info","message":"Started refreshing 1 application (/) commands.","service":"user-service","timestamp":"2025-02-15T22:06:59.397Z"}
+{"level":"info","message":"Successfully reloaded 1 application (/) commands.","service":"user-service","timestamp":"2025-02-15T22:06:59.835Z"}
