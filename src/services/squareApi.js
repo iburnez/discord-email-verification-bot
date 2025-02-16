@@ -1,4 +1,4 @@
-const { got } = require('got')
+const { fetch } = require('undici')
 const { squareToken } = require('../config.json')
 
 const squareUrl = 'https://connect.squareup.com/v2'
@@ -20,12 +20,13 @@ module.exports = {
           }
         }
       }
-      const res = await got( customerSearchEndpoint, {
+      const res = await fetch( customerSearchEndpoint, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(payload)
-      }).json()
-      return res?.customers
+      })
+      const json = await res.json()
+      return json?.customers
     } catch (error) {
       console.error(`Error attempting to query customer by email: ${email}`, error)
     }
