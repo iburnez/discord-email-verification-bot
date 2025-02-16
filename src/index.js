@@ -90,15 +90,20 @@ client.on(Events.MessageCreate, async (message) => {
 })
 
 client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand() && interaction.commandName != 'verify') return
-	const isAdmin = interaction.member.roles.cache.some(role => role.name.toLowerCase() === adminRoleName.toLowerCase())
-	if (isAdmin) {
-    const command = interaction.client.commands.get(interaction.commandName)
-    await handleCommand(interaction, command)
-	} else {
-    await interaction.reply({
-      content: `You do not have permission to use the /verify command.`,
-      flags: MessageFlags.Ephemeral
-    })
+  try {
+    if (!interaction.isChatInputCommand() && interaction.commandName != 'verify') return
+    const isAdmin = interaction.member.roles.cache.some(role => role.name.toLowerCase() === adminRoleName.toLowerCase())
+    if (isAdmin) {
+      const command = interaction.client.commands.get(interaction.commandName)
+      await handleCommand(interaction, command)
+    } else {
+      await interaction.reply({
+        content: `You do not have permission to use the /verify command.`,
+        flags: MessageFlags.Ephemeral
+      })
+    }
+  } catch (error) {
+    console.error('Error in interaction: ', error)
+    log.error('Error in interaction: ', error)
   }
 })
