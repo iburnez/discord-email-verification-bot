@@ -2,6 +2,8 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { Collection } = require('discord.js')
 
+const { log } = require('./services/logger')
+
 const commandsColletion = new Collection()
 const commandsJson = []
 
@@ -24,6 +26,7 @@ module.exports = {
               commandsColletion.set(command.data.name, command)
             } else {
               console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`)
+              log.error(`The command at ${filePath} is missing a required "data" or "execute" property.`)
             }
           }
         }
@@ -35,6 +38,7 @@ module.exports = {
       }
     } catch (error) {
       console.error('Error getting guild commands: ', error)
+      log.error('Error getting guild commands: ', error)
     }
   }
 }

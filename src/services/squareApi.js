@@ -1,5 +1,6 @@
 const { fetch } = require('undici')
 const { squareToken } = require('../config.json')
+const { log } = require('./logger')
 
 const squareUrl = 'https://connect.squareup.com/v2'
 const customerSearchEndpoint = squareUrl + '/customers/search'
@@ -29,6 +30,7 @@ module.exports = {
       return json?.customers
     } catch (error) {
       console.error(`Error attempting to query customer by email: ${email}`, error)
+      log.error(`Error attempting to query customer by email: ${email}`, error)
     }
   }
 }

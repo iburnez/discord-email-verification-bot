@@ -1,6 +1,8 @@
 const { SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js')
 const { assignVerifiedRole } = require('../../services/memberRoleService')
 
+const { log } = require('../../services/logger')
+
 module.exports = {
   data : new SlashCommandBuilder()
     .setName('verify')
@@ -53,6 +55,7 @@ module.exports = {
       }
     } catch ( error ) {
       console.log('Error in verification component: ', error)
+      log.error('Error in verification component: ', error)
       await interaction.reply( 'An error occured in the verification component: ' + error )
     }
   }

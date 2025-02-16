@@ -2,6 +2,8 @@ const attemptsRemainingByUserId = new Map()
 const timeoutsByUserId = new Map()
 const MAX_ATTEMPTS = 3
 
+const { log } = require('./logger')
+
 //TODO: Update this so when attempts remaining == 0 it starts the timeout and does not allow user 
 //to attempt again until timeout is complete
 module.exports = {
@@ -25,6 +27,7 @@ module.exports = {
       }
     } catch (error) {
       console.error('Error tracking users verification attempts: ', error)
+      log.error('Error tracking users verification attempts: ', error)
     }
   }
 }

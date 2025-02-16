@@ -1,6 +1,7 @@
 const { REST, Routes } = require('discord.js');
 const { clientId, guildId, botToken } = require('./config.json');
 
+const { log } = require('./services/logger.js');
 const { getCommands } = require('./get-commands.js');
 
 const rest = new REST().setToken(botToken);
@@ -9,13 +10,16 @@ const rest = new REST().setToken(botToken);
 	const commands = getCommands('json');
 	try {
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+		log.info(`Started refreshing ${commands.length} application (/) commands.`);
 		const data = await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
 
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+		log.info(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 		console.error('Unable to deploy commands guild: ', error);
+		log.error('Unable to deploy commands guild: ', error);
 	}
 })();
