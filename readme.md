@@ -3,18 +3,17 @@ This discord bot will listen to all messages on a specified discord channel (ver
 
 <h3>Setup</h3>
 1. Clone this repo locally
-2. Add a config.json file to the /src folder with the following properties: 
-```
-{
-	"botToken": "",
-    	"clientId": "",
-	"guildId": "",
-	"squareToken": "",
-	"verificationChannelId": "",
-	"verifiedRoleName": "",
-	"adminRoleName": ""
-}
-```
+2. Add a config.json file to the /src folder with the following properties: </br>
+
+{</br>
+	"botToken": "",</br>
+    	"clientId": "",</br>
+	"guildId": "",</br>
+	"squareToken": "",</br>
+	"verificationChannelId": "",</br>
+	"verifiedRoleName": "",</br>
+	"adminRoleName": ""</br>
+}</br>
 
 3. Login to the developer portal for Discord: 
     * https://discord.com/developers/applications
