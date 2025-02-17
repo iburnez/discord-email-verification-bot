@@ -59,5 +59,5 @@ This discord bot will listen to all messages on a specified discord channel (ver
 23. In vscode terminal run `cd deploy-commands.js`
 24. In vscode terminal run `cd ..`
 25. In vscode terminal run `npm run autostart`
-26. 20. Right click on the server name and click 'Server Settings' > 'Roles'.
+26. Right click on the server name and click 'Server Settings' > 'Roles'.
 	21. ![image](https://github.com/user-attachments/assets/06e00792-a93c-4a24-a07a-00d7ed8a3a48)
