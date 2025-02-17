@@ -8,7 +8,7 @@ module.exports = {
       const verifiedRole = roles.find(role => role.name.toLowerCase() === verifiedRoleName.toLowerCase())
       await member.roles.add(verifiedRole)
       log.info(`Role: \'${verifiedRole.name}\' has been added to member: \'${member.user.username}\'`)
-    } catch (error) {d
+    } catch (error) {
       console.error(`Unable to update member roles for: ${member}`, error)
       log.error(`Unable to update member roles for: ${member}`, error)
       throw error
