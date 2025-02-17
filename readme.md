@@ -59,5 +59,8 @@ This discord bot will listen to all messages on a specified discord channel (ver
 19. Under the Credentials section copy the 'Access token' into the config.json `squareToken` property
 	20. ![image](https://github.com/user-attachments/assets/32042f36-1e9d-4c8b-a3bc-5c27c2722faa)
 21. In vscode terminal run `npm install`
-22. In vscode terminal run `npm run autostart`
-23. Bot should be running and listening to messages on the discord server.
+22. In vscode terminal run `cd src`
+23. In vscode terminal run `cd deploy-commands.js`
+24. In vscode terminal run `cd ..`
+25. In vscode terminal run `npm run autostart`
+26. Bot should be running and listening to messages on the discord server.
