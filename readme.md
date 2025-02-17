@@ -47,8 +47,6 @@ This discord bot will listen to all messages on a specified discord channel (ver
     * if you do not see the 'Copy Server Id' [follow these step to enable developer mode on your account](https://www.howtogeek.com/714348/how-to-enable-or-disable-developer-mode-on-discord/)
 18. Right click on the channel you want the bot to listen to and click 'Copy Channel Id' and paste that value into the config.json `verificationChannelId` property
 	19. ![image](https://github.com/user-attachments/assets/6797213e-b9a9-4c16-949b-249322630e5e)
-20. Right click on the server name and click 'Server Settings' > 'Roles'.
-	21. ![image](https://github.com/user-attachments/assets/06e00792-a93c-4a24-a07a-00d7ed8a3a48)
 22. Move the bot role to be higher than the role being assigned on verification (bots cannot assign a role higher than the role they have, assignment will result in an error)
 	23. ![image](https://github.com/user-attachments/assets/882fdf62-c8be-4efb-977f-5da29affd06b)
 16. Enter the name of the role you want users to be assigned after verification into the config.json `verifiedRoleName` property
@@ -61,4 +59,5 @@ This discord bot will listen to all messages on a specified discord channel (ver
 23. In vscode terminal run `cd deploy-commands.js`
 24. In vscode terminal run `cd ..`
 25. In vscode terminal run `npm run autostart`
-26. Bot should be running and listening to messages on the discord server.
+26. 20. Right click on the server name and click 'Server Settings' > 'Roles'.
+	21. ![image](https://github.com/user-attachments/assets/06e00792-a93c-4a24-a07a-00d7ed8a3a48)
