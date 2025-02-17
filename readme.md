@@ -35,6 +35,7 @@ This discord bot will listen to all messages on a specified discord channel (ver
     * Scopes: 
         * bot
         * application.commands
+        * guild.members.read
         * roles_connections.write
         * messages.read
         * dm_channels.messages.read
