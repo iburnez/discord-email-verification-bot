@@ -38,8 +38,6 @@ This discord bot will listen to all messages on a specified discord channel (ver
         * guild.members.read
         * roles_connections.write
         * messages.read
-        * dm_channels.messages.read
-        * dm_channels.messages.write
     * Permissions: 
         * Administrator
 14. In the 'Select redirect URL' drop down select the redirect URL from the previous step
